@@ -7,10 +7,10 @@ class Database
 
     function connect()
     {
-        $db_host = 'localhost';
-        $db_name = 'cms';
-        $db_user = 'admin';
-        $db_password = 'C7ijdcews6aJKUnH';
+        $db_host = 'us-cdbr-east-06.cleardb.net';
+        $db_name = 'b0b4d2c45ab89d';
+        $db_user = 'b0b4d2c45ab89d';
+        $db_password = 'a550af6c';
         $dsn = 'mysql:host=' . $db_host . ';dbname=' . $db_name . ';charset=utf8';
         try {
             return new PDO($dsn, $db_user, $db_password);
