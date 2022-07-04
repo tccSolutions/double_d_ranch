@@ -1,0 +1,90 @@
+html{
+    min-height: 100%;  
+}
+/*    */
+body{  
+    background-image:url("../images/background.jpg");
+    background-position: center;
+    background-size: 100% 100%;    
+    background-repeat: no-repeat;
+    color: #D9D7C7 ;
+    min-height: 100%;
+    text-shadow: 1px 1px 1px black;
+   
+}
+.card{  
+    text-shadow: 1px 1px 5px black;
+     min-width:15rem;
+     height:35rem;
+}
+.card .horse_card{
+    background-color: #e6ce1b;
+    outline-color: black;
+    text-shadow: none;
+}
+.errors li{
+    list-style: none;
+}
+
+.fancy_font{
+    font-family: 'IM Fell English SC', serif;
+}
+
+form{
+    background-color: rgba(44, 44, 44, 0.596);
+}
+
+h2{
+    text-decoration: underline;
+
+}
+#horse_profile_pic{
+    width: 100%;
+    border-radius: 1em; 
+    box-shadow: 10px 10px 10px black;
+}
+
+hr{
+    width:65%;
+    background-color: inherit;
+    border-top: 15px dotted white;
+}
+
+.navbar{
+    background-color: #924A36;
+    box-shadow: 10px 10px 10px black;
+   
+}
+.navbar-brand, .nav-link{
+    color: #D9D7C7;
+}
+.navbar-brand:hover{
+    color: black;
+    text-shadow:1px 1px 11px #C3976A;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.nav-link:hover{
+    color: black;
+    text-shadow:1px 1px 11px #C3976A;
+    background-color: transparent;
+    transform: scale(1.25);   
+    cursor: pointer; 
+}
+
+.navbar-brand:hover > div >.the_j{
+    font-size: 1.5em;
+    animation: animate__headShake;
+    animation-duration: 3s;   
+}
+
+.transparent-background{
+    background-color: #696969a2;
+    border-radius: 1em;
+}
+
+.transparent-card-background{
+    background-color: #000000a2;
+    border-radius: 1em;
+}
