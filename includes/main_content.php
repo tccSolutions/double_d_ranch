@@ -15,13 +15,13 @@ function display_ranch_name($tag){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include 'header.php'?>
+    <?php require 'header.php'?>
    
 </head>
 <nav class="navbar navbar-expand-lg align-items-end ">
   <div class="container-fluid  align-items-end">
     <div class="d-flex navbar-brand p-3" style="border-right:1px solid black ;" >  
-      <img class='the_j animate__animated animate__wobble ' src='../images/brand.png' width='200px'/> 
+      <a href='/'><img class='the_j animate__animated animate__wobble ' src='../images/brand.png' width='200px'/> </a>
       </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon " style="color: black;"></span>

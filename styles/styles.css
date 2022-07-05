@@ -15,12 +15,15 @@ body{
 .card{  
     text-shadow: 1px 1px 5px black;
      min-width:15rem;
-     height:35rem;
+     height:35rem;     
+     border: 2px solid white;
+     margin:2em;
 }
 .card .horse_card{
     background-color: #e6ce1b;
     outline-color: black;
     text-shadow: none;
+    
 }
 .errors li{
     list-style: none;
@@ -53,8 +56,9 @@ hr{
 .navbar{
     background-color: #924A36;
     box-shadow: 10px 10px 10px black;
-   
+   z-index: 3000;
 }
+
 .navbar-brand, .nav-link{
     color: #D9D7C7;
 }
@@ -79,6 +83,10 @@ hr{
     animation-duration: 3s;   
 }
 
+.sign_in_form{
+    width: 50%;
+}
+
 .transparent-background{
     background-color: #696969a2;
     border-radius: 1em;
@@ -87,4 +95,24 @@ hr{
 .transparent-card-background{
     background-color: #000000a2;
     border-radius: 1em;
+}
+.welcome_screen{
+    padding: 2em;
+}
+
+@media only screen and (max-width:500px) {
+    .card{ 
+        margin:0;      
+         margin-bottom:2em;
+    }
+    .sign_in_form{
+        width: 95%;
+    }
+    .welcome_screen{
+        border-radius: .0025em;
+        font-size: 25em;
+        min-width: 95%;
+        padding:.0025em;
+       
+    }
 }

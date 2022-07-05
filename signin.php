@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
 </head>
 <body>    
     
-<form class="w-25 position-absolute top-50 start-50 translate-middle border border-2 p-3 shadow-lg rounded" method='post'>
+<form class="container position-absolute top-50 start-50 translate-middle border border-2 p-3 shadow-lg rounded sign_in_form" method='post'>
 <h1>Sign In</h1>
 <h6>or CREATE AN ACCOUNT</h6>
   <div class="mb-3">

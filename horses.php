@@ -11,34 +11,18 @@ foreach ($fetched_horses as $horse) {
         $horses[] = Horse::getHorseById($horse['id'], $conn);
     } elseif (filter_var($_GET['for_sale'], FILTER_VALIDATE_BOOLEAN) && $horse['price'] > 0) {
         $horses[] = Horse::getHorseById($horse['id'], $conn);
-    }
+    }   
+}
+foreach($horses as $horse){
+   
 }
 
-function display_info($horse)
-{
-    $horse_info = "";
-    if ($horse->hma) {
-        $horse_info .= '<h6 class="mt-0">HMA: ' . $horse->hma . '</h6>';
-    }
-    if ($horse->price) {
-        $horse_info .= '<h6 class="mt-0">Adoption Fee: $' . $horse->price. '</h6>';
-    }
-    if ($horse->height) {
-        $horse_info .=  "<h6 class=mt-0'>HANDS: ". $horse->height."</h6>";
-    }
-    if ($horse->weight) {
-        $horse_info .=  "<h6 class=mt-0'>WEIGHT: ". number_format($horse->weight, 0,'.',',') . " lbs</h6>";
-    }
-    if ($horse->weight) {
-        $horse_info .=  "<p class='mt-0' style=' font-size:10px; position:absolute; bottom:10%; left:3%;'>LAST UPDATED: $horse->exam_date</p>";
-    }
-    return $horse_info;
-}
+require 'includes/horse_info.php';
 
 ?>
 
 <head>
-    <title>Rocking-MJ-RANCH</title>
+    <title>DD RANCH</title>
 </head>
 <div class="container justify-content-center  p-3">
     <?php if (filter_var($_GET['for_sale'], FILTER_VALIDATE_BOOLEAN)) : ?>
@@ -53,27 +37,22 @@ function display_info($horse)
 
     <div class='animate__animated animate__fadeIn row  mt-4  align-items-center'>
         <?php foreach ($horses as $horse) : ?>
-            <?php $image = Image::get_horse_images($conn, $horse->id); $horse->getMedical($conn); ?>
-            <div class="card col-lg-3 mb-3 ms-5 p-4 transparent-card-background">
+            <?php $image = Image::get_horse_images($conn, $horse->id); ?>
+            <div class="card col-lg-3   p-4 transparent-card-background">
                 <div class='container' style='max-height:95%;'>
                     <div class='container' style='height:25%'>
                         <?php if ($image) : ?>
-                            <img class='card-img' src="../images/horses/<?= $horse->name ?>/<?= $image[rand(0,count($image)-1)]['url'] ?>" style='max-height:100%; width:auto;' />
+                            <img class='card-img' src="../images/horses/<?= $horse->name ?>/<?= $image[rand(0, count($image) - 1)]['url'] ?>" style='max-height:100%; width:auto;' />
                         <?php endif ?>
                     </div>
                     <div class=' p-3' style="">
                         <h5><?= $horse->name ?></h5>
                         <h6 class="mt-0">AGE: <?= date('Y') - $horse->year_foaled ?></h6>
                         <h6 class="mt-0">GENDER: <?= $horse->gender ?></h6>
-                        <h6 class="mt-0">BREED: <?= substr($horse->breed, 0, 16) ?></h6>                                            
-                        <?= display_info($horse) ?>
-                        
-                        
+                        <h6 class="mt-0">BREED: <?= substr($horse->breed, 0, 16) ?></h6>
+                        <?= display_info($horse, $conn) ?>
                     </div>
-
-                    <a href="horse_page.php?id=<?= $horse->id ?>" class="btn horse_card" style="position:absolute; bottom:5%; left:3%; width:95%;">More
-                        Info</a>
-
+                    <a href="horse_page.php?id=<?= $horse->id ?>" class="btn horse_card" style="position:absolute; bottom:5%; left:3%; width:95%;">More Info</a>
                 </div>
             </div>
 
