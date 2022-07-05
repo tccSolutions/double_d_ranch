@@ -38,6 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="add_image.php?id=<?= $horse->id ?>">Images</a>
             </li>
+            <li class="nav-item  ">
+                <a class="nav-link btn btn-secondary active" aria-current="page" href="add_medical_record.php?id=<?= $horse->id ?>">Medical</a>
+            </li>
 
         </ul>
         <!-- General Information -->
