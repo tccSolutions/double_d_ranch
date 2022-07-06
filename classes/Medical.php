@@ -1,6 +1,34 @@
 <?php
 
 class Medical{
+    public static function getMedicalRecords($conn, $limit, $offset, $horse_id){
+        $sql = "SELECT medical_checkups.*, horses.name
+                FROM medical_checkups
+                JOIN horses
+                ON medical_checkups.horse_id = horses.id
+                WHERE medical_checkups.horse_id = :horse_id               
+                ORDER BY date DESC
+                LIMIT :limit
+                OFFSET :offset";
+        $statement = $conn->prepare($sql);
+        $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $statement->bindValue(':horse_id', $horse_id, PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function checkWormCoggins($conn, $id){
+        $sql = "SELECT date, wormed, coggins, horses.name FROM medical_checkups
+        JOIN horses
+        ON medical_checkups.horse_id = horses.id 
+        WHERE horse_id= :id 
+        ORDER BY date DESC";
+        $statement = $conn->prepare($sql);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public static function getHorseMedical($conn, $horse){
         $sql = "SELECT * FROM medical_checkups WHERE horse_id= :horse_id ORDER BY date DESC LIMIT 1";

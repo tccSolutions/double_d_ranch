@@ -7,7 +7,7 @@ $horse = Horse::getHorseById($_GET['id'], $conn);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($horse->deleteHorse($conn)) {
-        Url::redirect('admin/horses.php');
+        Url::redirect('/horses.php?for_sale=true');
     };
 }
 

@@ -1,16 +1,75 @@
 <?php
 require '../includes/init.php';
 
+$conn = require '../includes/database.php';
+$paginator = new Paginator($_GET['page']?? 1, 5);
+$medical_records = Medical::getMedicalRecords($conn, $paginator->limit, $paginator->offset, $_GET['id']);
+$today = date('Y-m-d');
+
+
+$max_page_number = count($medical_records) - $paginator->records_per_page;
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $conn = require '../includes/database.php';
+    
     Medical::addRecord($conn, $_POST);
-    Url::redirect('../horse_page.php?id='.$_GET['id']);
+    Url::redirect("/admin/add_medical_record.php?id=$_GET[id]&page=1");
 }
 ?>
 
 <body>
+    <div class='container-fluid mt-3 justify-content-center'>
+        <table class=' w-75 table table-dark mx-auto'>
+           <thead>
+            <td class='text-center' colspan="11"> <h5>MEDICAL HISTORY</h5></td>
+           </thead>
+            <thead>
+                <td>Date</td>
+                <td>Name</td>
+                <td>Type</td>
+                <td>Height</td>
+                <td>Length</td>
+                <td>Girth</td>
+                <td>Red Tape</td>
+                <td>Black Tape</td>
+                <td>Wormed</td>
+                <td>Coggins</td>
+                <td></td>
+            </thead>
+            <tbody>
+            <?php foreach($medical_records as $record):?>
+                <tr>
+                    <td><?= date("M d, Y", strtotime($record['date']))?></td>
+                    <td><?= $record['name']?></td>
+                    <td><?= $record['type']?></td>
+                    <td><?= $record['height']?></td>
+                    <td><?= $record['length']?></td>
+                    <td><?= $record['girth']?></td>
+                    <td><?= $record['red_tape']?></td>
+                    <td><?= $record['black_tape']?></td>
+                    <td style='color:white;'><?= ($record['wormed'] == 1) ?"&check;" : ""?></td>                    
+                    <td><?= ($record['coggins'] == 1) ? "&check;" : "" ?></td>
+                    <td><a class='btn btn-secondary' href="#">EDIT</a></td>
+                </tr>
+            <?php endforeach ?>
+            </tbody>            
+        </table>
+        <ul class='nav mx-auto w-75'>           
+            <li ><a class='btn btn-primary pg_previous' href="add_medical_record.php?id=<?=$_GET['id']?>&page=<?php echo($_GET['page'] <= 1)? 1 : $_GET['page'] -1 ?>"><-Previous</a></li>
+            <?php if($max_page_number < 0): ?>
+            <li ><a class='btn btn-primary ms-auto pg_next disabled' href="add_medical_record.php?id=<?=$_GET['id']?>&page=<?=$_GET['page']?>">Next-></a></li>
+            <?php else: ?>
+                <li class='ms-auto' ><a class='btn btn-primary  pg_next' href="add_medical_record.php?id=<?=$_GET['id']?>&page=<?=$_GET['page'] + 1?>">Next-></a></li>
+            <?php endif?>
+
+        </ul>
+       
+
+    </div>
     <div class='container-fluid mt-3'>
-        <form class='p-2' method='post'>
+       
+        <form class='p-2 w-75 mx-auto' method='post'>
+        <div class='w-75 text-center mx-auto'>
+            <h3>Add Record</h3>
+        </div>
             <input type="text" name="horse_id" hidden  value="<?= $_GET['id'] ?>">
 
             <div class='row mb-3'>

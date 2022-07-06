@@ -46,7 +46,7 @@ function display_ranch_name($tag){
         </li>
         <?php else : ?>
         <li class="nav-item ms-auto">
-          <a class="nav-link" href="/signin.php">Sign In</a>
+          <a class="nav-link" id='sign_in' href="/signin.php">Sign In</a>
         </li>
         <?php endif ?>
       </ul>

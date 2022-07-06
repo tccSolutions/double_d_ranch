@@ -7,8 +7,8 @@ $conn = require 'includes/database.php';
 if($_SERVER['REQUEST_METHOD']==="POST"){
     if(User::authenticate($conn, $_POST['email'], $_POST['password'])) {
 
-        Auth::login();
-        Url::redirect('/');
+        Auth::login();      
+        Url::redirect('horses.php?for_sale=true');
     }else{
         $errors[]="Error Logging In";
     }
@@ -41,6 +41,7 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
   <a href="#" class="float-end btn btn-success">Create Account</a>
 </form>
     
+
 <?php
     require "./includes/footer.php"
 ?>

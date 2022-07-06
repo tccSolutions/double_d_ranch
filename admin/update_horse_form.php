@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a class="nav-link active" aria-current="page" href="add_image.php?id=<?= $horse->id ?>">Images</a>
             </li>
             <li class="nav-item  ">
-                <a class="nav-link btn btn-secondary active" aria-current="page" href="add_medical_record.php?id=<?= $horse->id ?>">Medical</a>
+                <a class="nav-link btn btn-secondary active" aria-current="page" href="add_medical_record.php?id=<?= $horse->id ?>&page=1">Medical</a>
             </li>
 
         </ul>
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a class='btn btn-warning w-100' href="/horse_page.php?id=<?= $horse->id ?>">Cancel</a>
                 </div>
                 <div class='col-lg-4 ms-auto mb-3'>
-                    <a class='btn btn-danger w-100' href="delete_horse.php?id=<?= $horse->id ?>">Delete</a>
+                    <a class='btn btn-danger w-100 delete' href="delete_horse.php?id=<?= $horse->id ?>">Delete</a>
                 </div>
             </div>
         </div>
