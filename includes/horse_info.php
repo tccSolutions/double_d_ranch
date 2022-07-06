@@ -15,8 +15,8 @@ function display_info($horse, $conn)
     if ($horse->weight) {
         $horse_info .=  "<h6 class=mt-0'>WEIGHT: " . number_format($horse->weight, 0, '.', ',') . " lbs</h6>";
     }
-    if ($horse->weight) {
-        $horse_info .=  "<p class='mt-0' style=' font-size:10px; position:absolute; bottom:10%; left:3%;'>LAST UPDATED: $horse->exam_date</p>";
+    if ($horse->exam_date) {
+        $horse_info .=  "<p class='mt-0' style=' font-size:10px;'>LAST UPDATED: $horse->exam_date</p>";
     }
     return $horse_info;
 }
