@@ -76,6 +76,10 @@ hr{
     transform: scale(1.25);   
     cursor: pointer; 
 }
+.nav-item{
+    border-right: solid 1px white;
+    padding: 0 1em;
+}
 
 .navbar-brand:hover > div >.the_j{
     font-size: 1.5em;

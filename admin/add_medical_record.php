@@ -3,6 +3,7 @@ require '../includes/init.php';
 
 $conn = require '../includes/database.php';
 $paginator = new Paginator($_GET['page']?? 1, 5);
+$_SESSION['page'] = $_GET['page'];
 $medical_records = Medical::getMedicalRecords($conn, $paginator->limit, $paginator->offset, $_GET['id']);
 $today = date('Y-m-d');
 
@@ -47,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <td><?= $record['black_tape']?></td>
                     <td style='color:white;'><?= ($record['wormed'] == 1) ?"&check;" : ""?></td>                    
                     <td><?= ($record['coggins'] == 1) ? "&check;" : "" ?></td>
-                    <td><a class='btn btn-secondary' href="#">EDIT</a></td>
+                    <td><a class='btn btn-secondary' href="edit_medical_record.php?id=<?=$record['id']?>">EDIT</a></td>
                 </tr>
             <?php endforeach ?>
             </tbody>            

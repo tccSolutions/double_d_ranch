@@ -18,7 +18,7 @@ function display_ranch_name($tag){
     <?php require 'header.php'?>
    
 </head>
-<nav class="navbar navbar-expand-lg align-items-end ">
+<nav class="navbar navbar-expand-lg align-items-end sticky-top ">
   <div class="container-fluid  align-items-end">
     <div class="d-flex navbar-brand p-3" style="border-right:1px solid black ;" >  
       <a href='/'><img class='the_j animate__animated animate__wobble ' src='../images/brand.png' width='200px'/> </a>
@@ -34,11 +34,12 @@ function display_ranch_name($tag){
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/horses.php?for_sale=true">For Sale</a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link " href="/horses.php?for_sale=false">Our Barn</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/horses.php?for_sale=true">Find Your Partner</a>
         </li>
         <?php if(Auth::isLoggedIn()) : ?>
           <li class="nav-item ms-auto">
