@@ -31,18 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-
-    <form class="w-75 mx-auto mt-2 border border-2 shadow-lg rounded p-3" method="post">
-        <h1><?= $horse->name ?></h1>
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="add_image.php?id=<?= $horse->id ?>">Images</a>
+<ul class="nav w-75 mx-auto mt-3">
+            <li class="nav-item ">
+            <a id="upload_widget" class="btn btn-primary cloudinary-button " href="add_image.php?id=<?=$_GET['id']?>">Add Image</a>
             </li>
             <li class="nav-item  ">
                 <a class="nav-link btn btn-secondary active" aria-current="page" href="add_medical_record.php?id=<?= $horse->id ?>&page=1">Medical</a>
             </li>
 
         </ul>
+    <form class="w-75 mx-auto mt-2 border border-2 shadow-lg rounded p-3" method="post">
+        <h1><?= $horse->name ?></h1>
+       
         <!-- General Information -->
 
         <div class='row'>

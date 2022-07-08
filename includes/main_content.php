@@ -29,7 +29,7 @@ function display_ranch_name($tag){
     <div class="collapse navbar-collapse  " id="navbarNav">
       <ul class="navbar-nav w-100 fancy_font fs-5  ">
         <li class="nav-item">
-          <a class="nav-link active " aria-current="page" href="/">Home</a>
+          <a class="nav-link " aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>

@@ -6,45 +6,42 @@ $conn = require 'includes/database.php';
 
 $horse = Horse::getHorseById($_GET['id'], $conn);
 $images = Image::get_horse_images($conn, $horse->id);
-$training= $horse->get_training_notes($conn);
+$training = $horse->get_training_notes($conn);
 
 
 require 'includes/horse_info.php';
 ?>
 
-    <head>
-        <title><?= $horse->name ?></title>
-    </head>
-    <section class='container-fluid p-2 row text-center justify-content-between  '>
-        <section class='col-lg-3 justify-content-start  ' style="max-height: 25em; margin-bottom:5em;">        
-                <div class='container  text-start p-5  transparent-card-background justify-content-start border border-1'>
-                    <div class='p-3 ' >
-                        <?php if ($images) : ?>
-                            <img class='rounded border border-2' src="../images/horses/<?= $horse->name ?>/<?= $images[rand(0, count($images) - 1)]['url'] ?>" 
-                            style=' max-height:150px; width:auto;' />
-                        <?php endif ?>
-                    </div>
-                    <div class='' >
-                        <h5>Name:<?= $horse->name ?></h5>
-                        <h6 class="mt-0">Age: <?= date('Y') - $horse->year_foaled ?></h6>
-                        <h6 class="mt-0">Gender: <?= $horse->gender ?></h6>
-                        <h6 class="mt-0">Breed: <?= substr($horse->breed, 0, 16) ?></h6>
-                        <?= display_info($horse, $conn) ?>
-                    </div>                   
-                </div>
-           
+<head>
+    <title><?= $horse->name ?></title>
+</head>
+<section class='container-fluid p-2 row text-center justify-content-between  '>
+    <?php if (!Auth::unauthorized()) : ?>
+        <ul class="nav col-lg-6 mx-auto d-flex justify-content-center">
+            <li>
+                <a class='btn btn-secondary' href="/admin/update_horse_form.php?id=<?= $horse->id ?>">Update</a>
+            </li>
 
-        </section>
-        <section class='row col-lg-8'>
-        <div class=' animate__animated animate__fadeIn justify-content-center align-items-center transparent-card-background'>           
-            <?php if (!Auth::unauthorized()): ?>
-                <ul class="nav col-lg-6 mx-auto d-flex justify-content-center">
-                    <li>
-                        <a class='btn btn-secondary' href="/admin/update_horse_form.php?id=<?= $horse->id ?>">Update</a>
-                    </li>
-                   
-                </ul>
+        </ul>
+    <?php endif ?>
+    <section class='col-lg-12 justify-content-center d-flex transparent-card-background '>
+
+        <div class='p-3 '>
+            <?php if ($images) : ?>
+                <img class='rounded border border-2' src="<?= $images[rand(0, count($images) - 1)]['url'] ?>" style=' max-height:150px; width:auto;' />
             <?php endif ?>
+        </div>
+        <div class='justify-content-start text-start'>
+            <h5>Name:<?= $horse->name ?></h5>
+            <h6 class="mt-0">Age: <?= date('Y') - $horse->year_foaled ?></h6>
+            <h6 class="mt-0">Gender: <?= $horse->gender ?></h6>
+            <h6 class="mt-0">Breed: <?= substr($horse->breed, 0, 16) ?></h6>
+            <?= display_info($horse, $conn) ?>
+        </div>
+    </section>
+    <section class='row col-lg-12 justify-content-center'>
+        <div class=' animate__animated animate__fadeIn justify-content-center align-items-center transparent-card-background'>
+
         </div>
 
         <?php require 'includes/hr.php' ?>
@@ -57,31 +54,31 @@ require 'includes/horse_info.php';
         <?php require 'includes/hr.php' ?>
         <div class='animate__animated animate__fadeIn animate__delay-1s row mx-auto mt-5 transparent-card-background justify-content-center'>
             <h2>Training Accomplishments</h2>
-            <ul class='w-50 text-start'>
-            <?php foreach($training as $task): ?>
-                <li>
-                    <h3 class='fancy_font'><?= $task['description'] ?></h3>
-                </li>
+            <ul class='w-50 text-start justify-content-center text-center '>
+                <?php foreach ($training as $task) : ?>
+                    <li class="mx-auto">
+                        <h3 class='fancy_font'><?= $task['description'] ?></h3>
+                    </li>
                 <?php endforeach ?>
             </ul>
         </div>
 
-        </section>
-        
-
-        <?php require 'includes/hr.php' ?>
+    </section>
 
 
-        <div class='animate__animated animate__fadeIn animate__delay-1s row mx-auto mt-5 container transparent-card-background'>
-            <h2>Gallery</h2>
-            <div class='row justify-content-center'>
-            <?php foreach($images as $image):?>
-                <img class='transparent-background m-1 p-4 col-lg-4'src="../images/horses/<?=$horse->name?>/<?=$image['url']?>" alt='horse_image' "/>
+    <?php require 'includes/hr.php' ?>
+
+
+    <div class='animate__animated animate__fadeIn animate__delay-1s row mx-auto mt-5 container transparent-card-background'>
+        <h2>Gallery</h2>
+        <div class='row justify-content-center'>
+            <?php foreach ($images as $image) : ?>
+                <img class='transparent-background m-1 p-4 col-lg-4' src="<?= $image['url'] ?>" alt='horse_image' style="max-height:400px; width:auto;" />
             <?php endforeach ?>
 
-            </div>           
         </div>
+    </div>
 
-    </section>
+</section>
 
 <?php require 'includes/footer.php' ?>

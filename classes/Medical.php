@@ -55,14 +55,24 @@ class Medical
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public static function getHorseRecords($conn, $horse_id)
+    {
+        $sql = "SELECT * FROM medical_checkups WHERE horse_id = :horse_id
+        ORDER BY date DESC";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':horse_id', $horse_id, PDO::PARAM_INT);
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public static function addRecord($conn, $Post)
     {
 
         $sql = "INSERT INTO medical_checkups (type, date, horse_id, vet, height, length, girth, red_tape, black_tape, notes, coggins, wormed)
                 VALUES (:type, :date, :horse_id,:vet, :height, :length, :girth, :red_tape, :black_tape, :notes, :coggins, :wormed)";
-      
-       
+
+
         $statement = $conn->prepare($sql);
         $statement->bindValue(':type', $Post['type'], PDO::PARAM_STR);
         $statement->bindValue(':date', date("Y-m-d"), PDO::PARAM_STR);
@@ -90,9 +100,9 @@ class Medical
         $sql = "UPDATE medical_checkups 
                 SET date=:date, horse_id=:horse_id, type=:type, vet=:vet, height=:height , wormed=:wormed ,coggins=:coggins,
                 length=:length, girth=:girth, red_tape=:red_tape, black_tape=:black_tape, notes=:notes
-                WHERE id=:id";       
-     
-       
+                WHERE id=:id";
+
+
 
         $statement = $conn->prepare($sql);
         $statement->bindValue(':id', $record_id, PDO::PARAM_INT);
@@ -118,7 +128,8 @@ class Medical
         return $statement->execute();
     }
 
-    public static function deleteRecord($conn, $id){
+    public static function deleteRecord($conn, $id)
+    {
         $sql = 'DELETE FROM medical_checkups WHERE id=:id;';
         $statement = $conn->prepare($sql);
         $statement->bindValue(':id', $id, PDO::PARAM_INT);

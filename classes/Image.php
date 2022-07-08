@@ -6,16 +6,18 @@ class Image
     public $url;
     public $comment;
     public $horse_id;
+    public $public_id;
 
 
     public static function upload_image($conn, $image){
        
-        $sql = "INSERT INTO images (url, comment, horse_id)
-            VALUES (:url, :comment, :horse_id)";
+        $sql = "INSERT INTO images (url, comment, horse_id, public_id)
+            VALUES (:url, :comment, :horse_id, :public_id)";
         $statement = $conn->prepare($sql);
         $statement->bindValue(':url', $image->url, PDO::PARAM_STR);
         $statement->bindValue(':comment', $image->comment, PDO::PARAM_STR);
         $statement->bindValue(':horse_id', $image->horse_id, PDO::PARAM_STR);
+        $statement->bindValue(':public_id', $image->public_id, PDO::PARAM_STR);
      
        
 
@@ -31,4 +33,6 @@ class Image
             return $statement->fetchAll();
         }
     }
+
+   
 }

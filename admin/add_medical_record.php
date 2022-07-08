@@ -5,6 +5,8 @@ $conn = require '../includes/database.php';
 $paginator = new Paginator($_GET['page']?? 1, 5);
 $_SESSION['page'] = $_GET['page'];
 $medical_records = Medical::getMedicalRecords($conn, $paginator->limit, $paginator->offset, $_GET['id']);
+$record_length = count(Medical::getHorseRecords($conn, $medical_records[0]['horse_id']));
+
 $today = date('Y-m-d');
 
 
@@ -53,15 +55,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <?php endforeach ?>
             </tbody>            
         </table>
-        <ul class='nav mx-auto w-75'>           
-            <li ><a class='btn btn-primary pg_previous' href="add_medical_record.php?id=<?=$_GET['id']?>&page=<?php echo($_GET['page'] <= 1)? 1 : $_GET['page'] -1 ?>"><-Previous</a></li>
-            <?php if($max_page_number < 0): ?>
-            <li ><a class='btn btn-primary ms-auto pg_next disabled' href="add_medical_record.php?id=<?=$_GET['id']?>&page=<?=$_GET['page']?>">Next-></a></li>
+      
+        <ul class='pagination mx-auto w-75 justify-content-center'> 
+             <li class="page-item"><a class="page-link" href="add_medical_record.php?id=<?=$_GET['id']?>&page=<?php echo($_GET['page'] <= 1)? 1 : $_GET['page'] -1 ?>">Previous</a></li>                   
+             <?php for($i = 1; $i<= $record_length/5; $i++ ):?>
+                <li class="page-item"><a class="page-link" href="add_medical_record.php?id=<?=$_GET['id']?>&page=<?=$i?>"><?=$i?></a></li>
+                <?php endfor ?>
+            <?php if($max_page_number < 0 || $record_length % $_SESSION['page'] == 0 && $_SESSION['page']!=1): ?>
+                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>            
             <?php else: ?>
-                <li class='ms-auto' ><a class='btn btn-primary  pg_next' href="add_medical_record.php?id=<?=$_GET['id']?>&page=<?=$_GET['page'] + 1?>">Next-></a></li>
+                <li class="page-item"><a class="page-link" href="add_medical_record.php?id=<?=$_GET['id']?>&page=<?=$_GET['page'] + 1?>">Next</a></li>                
             <?php endif?>
-
         </ul>
+        
        
 
     </div>
