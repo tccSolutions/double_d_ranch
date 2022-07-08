@@ -10,7 +10,5 @@ Configuration::instance([
     'url' => [
       'secure' => true]]);
 
-$admin = new AdminApi();
+ $admin = new AdminApi();
 
- var_dump($cld->image('139754631816000'));
- exit;
