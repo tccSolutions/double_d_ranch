@@ -7,9 +7,9 @@ use Cloudinary\Configuration\Configuration;
 
 Configuration::instance([
   'cloud' => [
-    'cloud_name' => 'hynhj7nmf', 
-    'api_key' => '424537574772339', 
-    'api_secret' => 'AM50EuC6bHia_MXRXnMXuc_orgk'],
+    'cloud_name' => 'dmobley0608', 
+    'api_key' => '172351854381963', 
+    'api_secret' => 'aHccAD-bj6FasCVv_m_xn2BSjxg'],
   'url' => [
     'secure' => true]]);
 
