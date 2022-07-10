@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   try{
     $image = new Image();
    var_dump($_FILES["horse_image"]);
-    $cloud_image = CloudImage::upload($_FILES["horse_image"]["tmp_name"], $horse);
+    $cloud_image = CloudImage::upload($_FILES["horse_image"], $horse);
     var_dump($image);
     var_dump($cloud_image);
     $image->comment = $_POST['comment'];
