@@ -9,7 +9,8 @@ $images = Image::get_horse_images($conn, $horse->id);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $image = new Image();
   $cloud_image = CloudImage::upload($_FILES["horse_image"]["tmp_name"], $horse);
-
+  var_dump($image);
+  var_dump($cloud_image);
   $image->comment = $_POST['comment'];
   $image->public_id = $cloud_image["public_id"];
   $image->url = $cloud_image["secure_url"];
