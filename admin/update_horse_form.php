@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <ul class="nav w-75 mx-auto mt-3">
             <li class="nav-item ">
-            <a id="upload_widget" class="btn btn-primary cloudinary-button " href="add_image.php?id=<?=$_GET['id']?>">Add Image</a>
+            <a id="upload_widget" class="btn btn-primary cloudinary-button " href="images.php?id=<?=$_GET['id']?>">Add Image</a>
             </li>
             <li class="nav-item  ">
                 <a class="nav-link btn btn-secondary active" aria-current="page" href="add_medical_record.php?id=<?= $horse->id ?>&page=1">Medical</a>

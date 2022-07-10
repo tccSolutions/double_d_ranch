@@ -26,12 +26,15 @@ require 'includes/horse_info.php';
     <?php endif ?>
     <section class='col-lg-12 justify-content-center d-flex transparent-card-background '>
 
-        <div class='p-3 '>
+        <div class=' align-self-end'>
+            <div class='mt-auto d-block'>
             <?php if ($images) : ?>
                 <img class='rounded border border-2' src="<?= $images[rand(0, count($images) - 1)]['url'] ?>" style=' max-height:150px; width:auto;' />
             <?php endif ?>
+            </div>
+                    
         </div>
-        <div class='justify-content-start text-start'>
+        <div class='ps-3 ms-3 justify-content-start text-start border-start border-1 '>
             <h5>Name:<?= $horse->name ?></h5>
             <h6 class="mt-0">Age: <?= date('Y') - $horse->year_foaled ?></h6>
             <h6 class="mt-0">Gender: <?= $horse->gender ?></h6>

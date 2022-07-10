@@ -34,5 +34,24 @@ class Image
         }
     }
 
+    public static function getImageByPublicId($conn, $public_id){
+        $sql = "Select * from images WHERE public_id = :public_id";
+        $statement = $conn->prepare($sql);
+        $statement->bindValue(":public_id", $public_id, PDO::PARAM_STR);
+        $statement->setFetchMode(PDO::FETCH_CLASS, 'Image');
+        if($statement->execute()){
+            return $statement->fetch();
+        }
+        
+        
+    }
+
+    public static function deleteImage($conn, $image){
+        $sql = "DELETE FROM images WHERE id = :id";
+        $statement = $conn->prepare($sql);
+        $statement->bindValue(":id", $image->id, PDO::PARAM_INT);       
+        return $statement->execute();        
+    }
+
    
 }
