@@ -9,7 +9,8 @@ $images = Image::get_horse_images($conn, $horse->id);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   try{
     $image = new Image();
-    $cloud_image = CloudImage::upload($_FILES["horse_image"], $horse);
+   var_dump($_FILES["horse_image"]);
+    $cloud_image = CloudImage::upload($_FILES["horse_image"]["tmp_name"], $horse);
     var_dump($image);
     var_dump($cloud_image);
     $image->comment = $_POST['comment'];
@@ -20,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Image::upload_image($conn, $image);
     Url::redirect("/admin/add_image.php?id=$_GET[id]");
   }catch(Exception $e){
-      echo("$e->getMessage()");
+      echo $e->getMessage();
     }
 }
 
