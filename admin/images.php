@@ -7,17 +7,21 @@ $horse = Horse::getHorseById($_GET['id'], $conn);
 $images = Image::get_horse_images($conn, $horse->id);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $image = new Image();
-  $cloud_image = CloudImage::upload($_FILES["horse_image"]["tmp_name"], $horse);
-  var_dump($image);
-  var_dump($cloud_image);
-  $image->comment = $_POST['comment'];
-  $image->public_id = $cloud_image["public_id"];
-  $image->url = $cloud_image["secure_url"];
-  $image->horse_id = $horse->id;
+  try{
+    $image = new Image();
+    $cloud_image = CloudImage::upload($_FILES["horse_image"]["tmp_name"], $horse);
+    var_dump($image);
+    var_dump($cloud_image);
+    $image->comment = $_POST['comment'];
+    $image->public_id = $cloud_image["public_id"];
+    $image->url = $cloud_image["secure_url"];
+    $image->horse_id = $horse->id;
 
-  Image::upload_image($conn, $image);
-  Url::redirect("/admin/add_image.php?id=$_GET[id]");
+    Image::upload_image($conn, $image);
+    Url::redirect("/admin/add_image.php?id=$_GET[id]");
+  }catch(Exception $e){
+      echo("$e->getMessage()");
+    }
 }
 
 ?>
