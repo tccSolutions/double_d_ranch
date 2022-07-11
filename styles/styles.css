@@ -53,9 +53,6 @@ hr{
     border-top: 15px dotted white;
 }
 
-#url_div iframe{
-    min-height: 100vh;
-}
 
 .navbar{
     background-color: #924A36;
