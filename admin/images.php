@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $image->horse_id = $horse->id;
 
     Image::upload_image($conn, $image);
-    Url::redirect("/admin/add_image.php?id=$_GET[id]");
+    Url::redirect("/admin/images.php?id=$_GET[id]");
   }catch(Exception $e){
       echo $e->getMessage();
     }
