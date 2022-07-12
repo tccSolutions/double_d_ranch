@@ -1,7 +1,7 @@
 <?php
-require "includes/init.php";
+require "../includes/init.php";
 
-$conn = require 'includes/database.php';
+$conn = require '../includes/database.php';
 
 
 $horse = Horse::getHorseById($_GET['id'], $conn);
@@ -9,7 +9,7 @@ $images = Image::get_horse_images($conn, $horse->id);
 $training = $horse->get_training_notes($conn);
 
 
-require 'includes/horse_info.php';
+require '../includes/horse_info.php';
 ?>
 
 <head>
@@ -47,14 +47,14 @@ require 'includes/horse_info.php';
 
         </div>
 
-        <?php require 'includes/hr.php' ?>
+        <?php require '../includes/hr.php' ?>
 
         <div class='animate__animated animate__fadeIn animate__delay-1s row  mx-auto mt-5 transparent-card-background'>
             <h2>A Little Bit About <?= $horse->name ?></h2>
             <h3><?= $horse->bio ?></h3>
         </div>
 
-        <?php require 'includes/hr.php' ?>
+        <?php require '../includes/hr.php' ?>
         <div class='animate__animated animate__fadeIn animate__delay-1s row mx-auto mt-5 transparent-card-background justify-content-center'>
             <h2>Training Accomplishments</h2>
             <ul class='w-50 text-start justify-content-center text-center '>
@@ -69,7 +69,7 @@ require 'includes/horse_info.php';
     </section>
 
 
-    <?php require 'includes/hr.php' ?>
+    <?php require '../includes/hr.php' ?>
 
 
     <div class='animate__animated animate__fadeIn animate__delay-1s row mx-auto mt-5 container transparent-card-background'>

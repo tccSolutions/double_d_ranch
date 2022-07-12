@@ -4,7 +4,7 @@
 $errors = [];
 function display_ranch_name($tag){
    return $ranch_name = "<div class='d-flex w-100 justify-content-center '>                 
-                  <img class='the_j animate__animated animate__wobble' src='../images/brand.png' width='100%'/>                 
+                  <img class='the_j animate__animated animate__wobble' src='../public/images/brand.png' width='100%'/>                 
                 </div>";
 }
 
@@ -21,7 +21,7 @@ function display_ranch_name($tag){
 <nav class="navbar navbar-expand-lg align-items-end sticky-top ">
   <div class="container-fluid  align-items-end">
     <div class="d-flex navbar-brand p-3" style="border-right:1px solid black ;" >  
-      <a href='/'><img class='the_j animate__animated animate__wobble ' src='../images/brand.png' width='200px'/> </a>
+      <a href='/'><img class='the_j animate__animated animate__wobble ' src='../public/images/brand.png' width='200px'/> </a>
       </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon " style="color: black;"></span>
@@ -36,18 +36,18 @@ function display_ranch_name($tag){
         </li>
         
         <li class="nav-item">
-          <a class="nav-link " href="/horses.php?for_sale=false">Our Barn</a>
+          <a class="nav-link " href="/public/horses.php?for_sale=false">Our Barn</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/horses.php?for_sale=true">Find Your Partner</a>
+          <a class="nav-link" href="/public/horses.php?for_sale=true">Find Your Partner</a>
         </li>
         <?php if(Auth::isLoggedIn()) : ?>
           <li class="nav-item ms-auto">
-          <a class="nav-link" href="/logout.php">Sign Out</a>
+          <a class="nav-link" href="/public/logout.php">Sign Out</a>
         </li>
         <?php else : ?>
         <li class="nav-item ms-auto">
-          <a class="nav-link" id='sign_in' href="/signin.php">Sign In</a>
+          <a class="nav-link" id='sign_in' href="/public/signin.php">Sign In</a>
         </li>
         <?php endif ?>
       </ul>

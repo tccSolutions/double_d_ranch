@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $horse = Horse::getHorseFromForm($_POST);
     if(empty($horse->errors)){
         Horse::addHorse($_POST, $conn);
-        Url::redirect('/horse_page.php?id=' . $conn->lastInsertId());
+        Url::redirect('/public/horse_page.php?id=' . $conn->lastInsertId());
     }else{
         $errors[] = $horse->errors;
     }

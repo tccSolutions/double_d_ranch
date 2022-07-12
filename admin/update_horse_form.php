@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = $updated_horse->errors;
     if (empty($errors)) {
         $updated_horse->updateHorse($conn);
-        Url::redirect("/horse_page.php?id=$horse->id");
+        Url::redirect("/public/horse_page.php?id=$horse->id");
     }
 }
 ?>

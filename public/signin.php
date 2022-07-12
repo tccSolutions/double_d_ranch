@@ -1,14 +1,14 @@
 <?php
 
-require 'includes/init.php';
+require '../includes/init.php';
 
-$conn = require 'includes/database.php';
+$conn = require '../includes/database.php';
 
 if($_SERVER['REQUEST_METHOD']==="POST"){
     if(User::authenticate($conn, $_POST['email'], $_POST['password'])) {
 
         Auth::login();      
-        Url::redirect('horses.php?for_sale=true');
+        Url::redirect('public/horses.php?for_sale=true');
     }else{
         $errors[]="Error Logging In";
     }
@@ -43,5 +43,5 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
     
 
 <?php
-    require "./includes/footer.php"
+    require "../includes/footer.php"
 ?>
