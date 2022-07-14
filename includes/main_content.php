@@ -55,4 +55,4 @@ function display_ranch_name($tag){
   </div>
 </nav>
 <body class=''>
-
+<div class='container'>

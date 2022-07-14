@@ -7,20 +7,27 @@ class User{
 
 
 
-    public static function authenticate($conn,$email, $password)
+    public static function authenticateUser($conn,$email)
     {
-        $sql = "SELECT * FROM users WHERE email = :email";
+        $sql = "SELECT * FROM users WHERE email like :email";
         $statement = $conn->prepare($sql);
         $statement->bindValue(':email', $email, PDO::PARAM_STR);
         $statement -> setFetchMode(PDO::FETCH_CLASS, 'User');
         $statement -> execute();
        
-        if($user = $statement->fetch()){
-            if(password_verify($password, $user->password)){
-                $_SESSION['user_admin'] = $user->admin;
-                return true;
-            }
-            return false ;
+        if($user = $statement->fetch()){           
+            return $user ;
+        }else{
+            return false;
+        }
+    }
+
+    public static function authenticatePassword($user, $password){
+        if(password_verify($password, $user->password)){
+            $_SESSION['user_admin'] = $user->admin;
+            return true;
+        }else{
+            return false;
         }
     }
 

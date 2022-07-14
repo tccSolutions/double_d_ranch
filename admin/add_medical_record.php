@@ -4,8 +4,14 @@ require '../includes/init.php';
 $conn = require '../includes/database.php';
 $paginator = new Paginator($_GET['page']?? 1, 5);
 $_SESSION['page'] = $_GET['page'];
+
 $medical_records = Medical::getMedicalRecords($conn, $paginator->limit, $paginator->offset, $_GET['id']);
-$record_length = count(Medical::getHorseRecords($conn, $medical_records[0]['horse_id']));
+if ($medical_records){
+    $record_length = count(Medical::getHorseRecords($conn, $medical_records[0]['horse_id']));
+}else{
+    $record_length = 0;
+}
+
 
 $today = date('Y-m-d');
 
@@ -18,9 +24,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 ?>
 
-<body>
+
     <div class='container-fluid mt-3 justify-content-center'>
-        <table class=' w-75 table table-dark mx-auto'>
+        <table id="medical_table" class=' w-75 table table-dark mx-auto'>
+            
            <thead>
             <td class='text-center' colspan="11"> <h5>MEDICAL HISTORY</h5></td>
            </thead>
@@ -28,13 +35,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <td>Date</td>
                 <td>Name</td>
                 <td>Type</td>
-                <td>Height</td>
-                <td>Length</td>
-                <td>Girth</td>
-                <td>Red Tape</td>
-                <td>Black Tape</td>
-                <td>Wormed</td>
-                <td>Coggins</td>
+                <td class='medical_hidden'>Height</td>
+                <td class='medical_hidden'>Length</td>
+                <td class='medical_hidden'>Girth</td>
+                <td class='medical_hidden'>Red Tape</td>
+                <td class='medical_hidden'>Black Tape</td>
+                <td class='medical_hidden'>Wormed</td>
+                <td class='medical_hidden'>Coggins</td>
                 <td></td>
             </thead>
             <tbody>
@@ -43,13 +50,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <td><?= date("M d, Y", strtotime($record['date']))?></td>
                     <td><?= $record['name']?></td>
                     <td><?= $record['type']?></td>
-                    <td><?= $record['height']?></td>
-                    <td><?= $record['length']?></td>
-                    <td><?= $record['girth']?></td>
-                    <td><?= $record['red_tape']?></td>
-                    <td><?= $record['black_tape']?></td>
-                    <td style='color:white;'><?= ($record['wormed'] == 1) ?"&check;" : ""?></td>                    
-                    <td><?= ($record['coggins'] == 1) ? "&check;" : "" ?></td>
+                    <td class='medical_hidden'><?= $record['height']?></td>
+                    <td class='medical_hidden'><?= $record['length']?></td>
+                    <td class='medical_hidden'><?= $record['girth']?></td>
+                    <td class='medical_hidden'><?= $record['red_tape']?></td>
+                    <td class='medical_hidden'><?= $record['black_tape']?></td>
+                    <td class='medical_hidden' style='color:white;'><?= ($record['wormed'] == 1) ?"&check;" : ""?></td>                    
+                    <td class='medical_hidden'><?= ($record['coggins'] == 1) ? "&check;" : "" ?></td>
                     <td><a class='btn btn-secondary' href="edit_medical_record.php?id=<?=$record['id']?>">EDIT</a></td>
                 </tr>
             <?php endforeach ?>

@@ -51,7 +51,7 @@ require '../includes/horse_info.php';
 
         <div class='animate__animated animate__fadeIn animate__delay-1s row  mx-auto mt-5 transparent-card-background'>
             <h2>A Little Bit About <?= $horse->name ?></h2>
-            <h3><?= $horse->bio ?></h3>
+            <h3 class='col-lg-6 mx-auto'><?= $horse->bio ?></h3>
         </div>
 
         <?php require '../includes/hr.php' ?>
@@ -84,4 +84,4 @@ require '../includes/horse_info.php';
 
 </section>
 
-<?php require 'includes/footer.php' ?>
+<?php require '../includes/footer.php' ?>

@@ -5,17 +5,18 @@ require '../includes/init.php';
 $conn = require '../includes/database.php';
 
 if($_SERVER['REQUEST_METHOD']==="POST"){
-    if(User::authenticate($conn, $_POST['email'], $_POST['password'])) {
-
+  $user = User::authenticateUser($conn, $_POST['email']);
+    if($user) {
+      if(User::authenticatePassword($user,  $_POST['password'])){
         Auth::login();      
         Url::redirect('public/horses.php?for_sale=true');
-    }else{
-        $errors[]="Error Logging In";
+      }else{
+        $errors[]="Please Check Your Password";
+      }   
+    } else{
+      $errors[]="Email Not Found";
     }
-
-
-  
-}
+  }
 
 
  ?>

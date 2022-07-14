@@ -54,6 +54,8 @@ hr{
 }
 
 
+
+
 .navbar{
     background-color: #924A36;
     box-shadow: 10px 10px 10px black;
@@ -108,7 +110,11 @@ hr{
 @media only screen and (max-width:500px) {
     .card{ 
         margin:0;      
-         margin-bottom:2em;
+        margin-bottom:2em;
+
+    }
+    .medical_hidden{
+        display:none;
     }
     .sign_in_form{
         width: 95%;
