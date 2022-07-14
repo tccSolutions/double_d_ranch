@@ -12,6 +12,11 @@ body{
     text-shadow: 1px 1px 1px black;
    
 }
+.brand{
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+    text-shadow: 10px 10px 10px white;
+}
 .card{  
     text-shadow: 1px 1px 5px black;
      min-width:15rem;

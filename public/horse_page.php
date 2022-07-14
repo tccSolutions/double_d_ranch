@@ -24,17 +24,21 @@ require '../includes/horse_info.php';
 
         </ul>
     <?php endif ?>
-    <section class='col-lg-12 justify-content-center d-flex transparent-card-background '>
-
-        <div class=' align-self-end'>
+    
+    <section class='col-lg-12 row justify-content-center d-flex transparent-card-background '>   
+    <div class="col-12 mb-3 justify-content-center text-center">
+            <?php require '../includes/brand_loader.php' ?>
+        </div>     
+        <div class=' align-self-end col-lg-5'>
             <div class='mt-auto d-block'>
-            <?php if ($images) : ?>
-                <img class='rounded border border-2' src="<?= $images[rand(0, count($images) - 1)]['url'] ?>" style=' max-height:150px; width:auto;' />
-            <?php endif ?>
+
+                <?php if ($images) : ?>
+                    <img class='rounded border border-2' src="<?= $images[rand(0, count($images) - 1)]['url'] ?>" style='max-height:300px;width:auto;' />
+                <?php endif ?>
             </div>
-                    
+
         </div>
-        <div class='ps-3 ms-3 justify-content-start text-start border-start border-1 '>
+        <div class='ps-3 ms-3 justify-content-start text-start border-start border-1 col-lg-5'>
             <h5>Name:<?= $horse->name ?></h5>
             <h6 class="mt-0">Age: <?= date('Y') - $horse->year_foaled ?></h6>
             <h6 class="mt-0">Gender: <?= $horse->gender ?></h6>
