@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
   $user = User::authenticateUser($conn, $_POST['email']);
     if($user) {
       if(User::authenticatePassword($user,  $_POST['password'])){
-        Auth::login();      
+        Auth::login($user);      
         Url::redirect('public/horses.php?for_sale=true');
       }else{
         $errors[]="Please Check Your Password";
@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
 <h1>Sign In</h1>
 <h6>or CREATE AN ACCOUNT</h6>
   <div class="mb-3">
-    <label for="email" class="form-label">User Name</label>
+    <label for="email" class="form-label">Email</label>
     <input type="text" class="form-control" name="email" aria-describedby="emailHelp">
    
   </div>
@@ -39,7 +39,7 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
     <input type="password" class="form-control" name="password">
   </div> 
   <button type="submit" class="btn btn-primary">Submit</button>
-  <a href="#" class="float-end btn btn-success">Create Account</a>
+  <a href="signup.php" class="float-end btn btn-success">Create Account</a>
 </form>
     
 

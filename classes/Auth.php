@@ -15,11 +15,11 @@ class Auth
         }
     }
 
-    public static function login()
+    public static function login($user)
     {
         session_regenerate_id(true);
         $_SESSION['is_logged_in'] = true;
-
+        $_SESSION['user'] = $user;
     }
 
     // Unset all of the session variables.

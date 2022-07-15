@@ -8,7 +8,7 @@ class User{
 
 
     public static function authenticateUser($conn,$email)
-    {
+    {       
         $sql = "SELECT * FROM users WHERE email like :email";
         $statement = $conn->prepare($sql);
         $statement->bindValue(':email', $email, PDO::PARAM_STR);
@@ -28,6 +28,19 @@ class User{
             return true;
         }else{
             return false;
+        }
+    }
+
+    public static function createUser($conn, $POST){
+        if(User::authenticateUser($conn, $POST['email'])){
+            return false;
+        }
+        $sql = "INSERT INTO users (email,  password)  VALUES (:email,:password)";
+        $statement = $conn->prepare($sql);
+        $statement->bindValue(':email', $POST['email'], PDO::PARAM_STR);
+        $statement->bindValue(':password', password_hash($POST['password'], PASSWORD_DEFAULT), PDO::PARAM_STR);
+        if($statement->execute()){
+            return true;
         }
     }
 

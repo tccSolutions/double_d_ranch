@@ -2,6 +2,14 @@
 
 <?php
 $errors = [];
+
+if(isset($_SESSION['user'])){
+  $username = explode('@',$_SESSION['user']->email, 2)[0];
+  var_dump($username);
+}else{
+  $username='';
+}
+
 function display_ranch_name($tag){
    return $ranch_name = "<div class='d-flex w-100 justify-content-center '>                 
                   <img class='the_j animate__animated animate__wobble' src='../public/images/brand.png' width='100%'/>                 
@@ -43,7 +51,7 @@ function display_ranch_name($tag){
         </li>
         <?php if(Auth::isLoggedIn()) : ?>
           <li class="nav-item ms-auto">
-          <a class="nav-link" href="/public/logout.php">Sign Out</a>
+          <a class="nav-link" href="/public/logout.php"><?= $username?></a>
         </li>
         <?php else : ?>
         <li class="nav-item ms-auto">
