@@ -5,7 +5,7 @@ $errors = [];
 
 if(isset($_SESSION['user'])){
   $username = explode('@',$_SESSION['user']->email, 2)[0];
-  var_dump($username);
+ 
 }else{
   $username='';
 }
