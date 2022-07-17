@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
 </head>
 <body>    
     
-<form class="container position-absolute top-50 start-50 translate-middle border border-2 p-3 shadow-lg rounded sign_in_form" method='post'>
+<form class="container position-absolute top-50 start-50 translate-middle border border-2 p-3 shadow-lg rounded sign_in_form form_container" method='post'>
 <h1>Sign In</h1>
 <h6>or CREATE AN ACCOUNT</h6>
   <div class="mb-3">
@@ -38,8 +38,8 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
     <label for="password" class="form-label">Password</label>
     <input type="password" class="form-control" name="password">
   </div> 
-  <button type="submit" class="btn btn-primary">Submit</button>
-  <a href="signup.php" class="float-end btn btn-success">Create Account</a>
+  <button type="submit" class="btn btn-success loading">Sign In</button>
+  <a href="signup.php" class="float-end btn btn-primary">Create Account</a>
 </form>
     
 

@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-  <div id="image_container">
+  <div class="form_container">
     <form class=" mx-auto w-75 mt-3 border border-1" method='post' action="" enctype="multipart/form-data">
       <div class="mb-3 col-auto">
         <label for="comment" class="form-label">Comment</label>
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input class="form-control" type="file" id="formFile" name='horse_image' required>
       </div>
       <div class="col-auto">
-        <button id=image_btn type="submit" class="btn btn-primary mb-3">Upload</button>
+        <button id="image_btn" type="submit" class="btn btn-primary mb-3 loading">Upload</button>
       </div>
     </form>
 
@@ -58,20 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
 
-  <div id="loading_div" class="position-absolute top-50 start-50 translate-middle text-center">
-    <img class="" src="/public/images/uploading.gif" alt="">
-  </div>
+  <?php require "../includes/footer.php"?>
+
+  
 
 
-  <script>
-    $('#loading_div').hide();
-
-    $("#image_btn").on("click", function(event) {
-
-      if ($('#formFile')[0].files.length > 0) {
-        $("#loading_div").show();
-        $("#image_container").hide()
-      }
-
-    })
-  </script>
+  

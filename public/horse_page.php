@@ -24,11 +24,11 @@ require '../includes/horse_info.php';
 
         </ul>
     <?php endif ?>
-    
-    <section class='col-lg-12 row justify-content-center d-flex transparent-card-background '>   
-    <div class="col-12 mb-3 justify-content-center text-center">
+
+    <section class='col-lg-12 row pb-3 justify-content-center d-flex transparent-card-background '>
+        <div class="col-12 mb-3 justify-content-center text-center">
             <?php require '../includes/brand_loader.php' ?>
-        </div>     
+        </div>
         <div class=' align-self-end col-lg-5'>
             <div class='mt-auto d-block'>
 

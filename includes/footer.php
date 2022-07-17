@@ -1,3 +1,7 @@
+<div id="loading_div" class="position-absolute top-50 start-50 translate-middle text-center">
+    <img class="" src="/public/images/uploading.gif" alt="">
+  </div>
+
 <?php require 'error_handler.php' ?>
 </div>  
 <!-- JavaScript Bundle with Popper -->
@@ -7,6 +11,15 @@
 
 <!-- JS -->
 <script src="../js/script.js"></script>
+
+<script>
+    $('#loading_div').hide();
+
+    $(".loading").on("click", function(event) {
+        $("#loading_div").show();
+        $(".form_container").hide()
+      })
+  </script>
 </body>
 
 </html>

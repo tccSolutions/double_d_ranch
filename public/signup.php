@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
 <body>
 
-  <form class="container position-absolute top-50 start-50 translate-middle border border-2 p-3 shadow-lg rounded sign_in_form" method='post'>
+  <form class="container position-absolute top-50 start-50 translate-middle border border-2 p-3 shadow-lg rounded sign_in_form form_container" method='post'>
     <h1>Sign In</h1>
     <h6>or CREATE AN ACCOUNT</h6>
     <div class="mb-3">
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
       <input id='confirm_password' type="password" class="form-control password_group disabled" name="confirm_password" autocomplete="new-password" required>
       <div class='registration_form_alert bg-warning w-25 rounded' id='check_password'></div>
     </div>
-    <button id='submit_btn' type="submit" class="btn btn-primary disabled">Submit</button>
+    <button id='submit_btn' type="submit" class="btn btn-primary disabled loading">Submit</button>
     <a href="/" class="float-end btn btn-danger">Cancel</a>
   </form>
 

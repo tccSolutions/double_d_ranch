@@ -3,13 +3,13 @@ html{
 }
 /*    */
 body{  
-    background-image:url("../images/background.jpg");
+    background-image:url("../images/bg.jpg");
     background-position: center;
     background-size: 100% 100%;    
     background-repeat: no-repeat;
-    color: #D9D7C7 ;
+    color: #000000 ;
     min-height: 100%;
-    text-shadow: 1px 1px 1px black;
+    text-shadow: 1px 1px 5px rgb(255, 255, 255);
    
 }
 .brand{
@@ -68,7 +68,8 @@ hr{
 }
 
 .navbar-brand, .nav-link{
-    color: #D9D7C7;
+    color: black;
+    text-shadow:1px 1px 5px #C3976A;
 }
 .navbar-brand:hover{
     color: black;
@@ -99,14 +100,13 @@ hr{
     width: 50%;
 }
 
-.transparent-background{
-    background-color: #696969a2;
-    border-radius: 1em;
-}
+
 
 .transparent-card-background{
     background-color: #000000a2;
     border-radius: 1em;
+    color: white;
+    text-shadow: 1px 1px 5px black;
 }
 .welcome_screen{
     padding: 2em;
