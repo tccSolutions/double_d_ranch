@@ -1,5 +1,6 @@
 <?php
 require '../includes/init.php';
+require '../includes/access.php';
 
 $conn = require '../includes/database.php';
 $record = Medical::getHorseMedicalById($conn, $_GET['id']);

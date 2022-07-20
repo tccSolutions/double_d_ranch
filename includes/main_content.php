@@ -3,15 +3,15 @@
 <?php
 $errors = [];
 
-if(isset($_SESSION['user'])){
-  $username = explode('@',$_SESSION['user']->email, 2)[0];
- 
-}else{
-  $username='';
+if (isset($_SESSION['user'])) {
+  $username = explode('@', $_SESSION['user']->email, 2)[0];
+} else {
+  $username = '';
 }
 
-function display_ranch_name($tag){
-   return $ranch_name = "<div class='d-flex w-100 justify-content-center '>                 
+function display_ranch_name($tag)
+{
+  return $ranch_name = "<div class='d-flex w-100 justify-content-center '>                 
                   <img class='the_j animate__animated animate__wobble' src='../public/images/brand.png' width='100%'/>                 
                 </div>";
 }
@@ -22,15 +22,16 @@ function display_ranch_name($tag){
 <!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <?php require 'header.php'?>
-   
+  <?php require 'header.php' ?>
+
 </head>
 <nav class="navbar navbar-expand-lg align-items-end sticky-top ">
   <div class="container-fluid  align-items-end">
-    <div class="d-flex navbar-brand p-3" style="border-right:1px solid black ;" >  
-      <a href='/'><img class='the_j animate__animated animate__wobble ' src='../public/images/brand.png' width='200px'/> </a>
-      </div>
+    <div class="d-flex navbar-brand p-3" style="border-right:1px solid black ;">
+      <a href='/'><img class='the_j animate__animated animate__wobble ' src='../public/images/brand.png' width='200px' /> </a>
+    </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon " style="color: black;"></span>
     </button>
@@ -42,25 +43,33 @@ function display_ranch_name($tag){
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link " href="/public/horses.php?for_sale=false">Our Barn</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/public/horses.php?for_sale=true">Find Your Partner</a>
         </li>
-        <?php if(Auth::isLoggedIn()) : ?>
+        <?php if (Auth::isLoggedIn() && $username != 'admin') : ?>
           <li class="nav-item ms-auto">
-          <a class="nav-link" href="/public/logout.php"><?= $username?></a>
-        </li>
-        <?php else : ?>
-        <li class="nav-item ms-auto">
-          <a class="nav-link" id='sign_in' href="/public/signin.php">Sign In</a>
-        </li>
+            <a class="nav-link" href="/public/logout.php"><?= $username ?></a>
+          </li>
+        <?php elseif (Auth::isLoggedIn() && $username == 'admin') : ?>         
+          <li class="nav-item ">
+            <a class="nav-link" href="/admin/home.php">Manage Content</a>
+          </li>
+          <li class="nav-item ms-auto">
+            <a class="nav-link" href="/public/logout.php">Sign Out</a>
+          </li>
+          <?php else : ?>
+          <li class="nav-item ms-auto">
+            <a class="nav-link" id='sign_in' href="/public/signin.php">Sign In</a>
+          </li>
         <?php endif ?>
       </ul>
     </div>
   </div>
 </nav>
+
 <body class=''>
-<div class='container'>
+  <div class='container-fluid form_container'>

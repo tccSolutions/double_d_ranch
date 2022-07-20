@@ -10,7 +10,7 @@
 
 
 <!-- JS -->
-<script src="../js/script.js"></script>
+<script src="../public/js/script.js"></script>
 
 <script>
     $('#loading_div').hide();

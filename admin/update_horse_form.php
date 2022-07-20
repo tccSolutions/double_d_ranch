@@ -2,6 +2,7 @@
 require '../includes/init.php';
 require '../includes/access.php';
 
+
 $conn = require '../includes/database.php';
 $horse = Horse::getHorseById($_GET['id'], $conn);
 $training_notes = Training::get_notes($conn);
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = $updated_horse->errors;
     if (empty($errors)) {
         $updated_horse->updateHorse($conn);
-        Url::redirect("/public/horse_page.php?id=$horse->id");
+        Url::redirect("/admin/update_horse_form.php?id=$updated_horse->id");
     }
 }
 ?>
@@ -30,17 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-
-<ul class="nav w-75 mx-auto mt-3">
+<?php require '../includes/admin_nav.php' ?>
+        <ul class="nav w-75 mx-auto mt-3 form_container">
             <li class="nav-item ">
-            <a id="" class="btn btn-primary cloudinary-button " href="images.php?id=<?=$_GET['id']?>">Images</a>
+            <a id="" class="nav-link btn " href="images.php?id=<?=$_GET['id']?>">Images</a>
             </li>
             <li class="nav-item  ">
-                <a class="nav-link btn btn-secondary active" aria-current="page" href="add_medical_record.php?id=<?= $horse->id ?>&page=1">Medical</a>
+                <a class="nav-link btn " aria-current="page" href="add_medical_record.php?id=<?= $horse->id ?>&page=1">Medical</a>
             </li>
 
         </ul>
-    <form class="w-75 mx-auto mt-2 border border-2 shadow-lg rounded p-3" method="post">
+    <form class="w-75 mx-auto mt-2 border border-2 shadow-lg rounded p-3 form_container" method="post">
         <h1><?= $horse->name ?></h1>
        
         <!-- General Information -->
@@ -91,12 +92,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </fieldset>
             <div class='row mt-3 justify-content-center'>
                 <div class='col-lg-4 me-auto mb-2'>
-                    <button type='submit' class='btn btn-primary w-100'>Update</button>
+                    <button type='submit' class='btn btn-primary w-100 loading'>Update</button>
                 </div>
-
-                <div class='col-lg-4 ms-auto mb-3'>
-                    <a class='btn btn-warning w-100' href="/horse_page.php?id=<?= $horse->id ?>">Cancel</a>
-                </div>
+               
                 <div class='col-lg-4 ms-auto mb-3'>
                     <a class='btn btn-danger w-100 delete' href="delete_horse.php?id=<?= $horse->id ?>">Delete</a>
                 </div>

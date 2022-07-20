@@ -27,7 +27,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <body>
+  <?php require '../includes/admin_nav.php' ?>
+  <ul class="nav w-75 mx-auto mt-3 form_container">
+    <li class="nav-item ">
+      <a id="" class="nav-link btn " href="/admin/update_horse_form.php?id=<?= $horse->id ?>">General Info</a>
+    </li>   
+    <li class="nav-item  ">
+      <a class="nav-link btn " aria-current="page" href="add_medical_record.php?id=<?= $horse->id ?>&page=1">Medical</a>
+    </li>
 
+  </ul>
   <div class="form_container">
     <form class=" mx-auto w-75 mt-3 border border-1" method='post' action="" enctype="multipart/form-data">
       <div class="mb-3 col-auto">
@@ -44,9 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
 
-    <div class='container row mx-auto justify-content-center'>
+    <div class='container row mx-auto justify-content-around '>
       <?php foreach ($images as $image) : ?>
-        <div class='col-lg-3 text-center border border-3 m-1'>
+        <div class='col-lg-3 text-center border border-3 m-3 me-auto'>
           <img src="<?= $image["url"] ?>" alt="" style="height:150px; max-width:auto;">
           <a class='btn btn-danger w-100 mt-1' href="/admin/delete_image.php?public_id=<?= $image['public_id'] ?>">
             DELETE
@@ -58,9 +67,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
 
-  <?php require "../includes/footer.php"?>
-
-  
-
-
-  
+  <?php require "../includes/footer.php" ?>

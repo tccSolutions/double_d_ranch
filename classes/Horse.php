@@ -38,7 +38,7 @@ class Horse
     public static function getAll($conn)
     {
         try {
-            $sql = "SELECT *  FROM horses  ORDER By year_foaled";
+            $sql = "SELECT *  FROM horses  ORDER By name";
             $horses_results = $conn->query($sql);
             return $horses_results->fetchAll(PDO::FETCH_ASSOC);
         } catch (Exception $e) {

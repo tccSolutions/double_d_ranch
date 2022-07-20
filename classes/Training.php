@@ -18,6 +18,7 @@ class Training
         $sql = "INSERT INTO horse_training (horse_id, training_id )
                 VALUES";
         $values = [];
+        $checked = [];
 
         if (count($already_checked) > 0) {
             foreach ($already_checked as $check) {
@@ -36,14 +37,11 @@ class Training
                 }
             }
 
-            $sql .= implode(",", $values);
-            var_dump($sql);
+            $sql .= implode(",", $values);           
 
             $statement = $conn->prepare($sql);
-            foreach ($checked as $i => $note) {
-                
-                $statement->bindValue($i + 1, $note, PDO::PARAM_INT);
-                
+            foreach ($checked as $i => $note) {                
+                $statement->bindValue($i + 1, $note, PDO::PARAM_INT);                
             }
             if (count($values) > 0) {
                 $statement->execute();

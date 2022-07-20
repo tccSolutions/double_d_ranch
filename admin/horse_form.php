@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $horse = Horse::getHorseFromForm($_POST);
     if(empty($horse->errors)){
         Horse::addHorse($_POST, $conn);
-        Url::redirect('/public/horse_page.php?id=' . $conn->lastInsertId());
+        Url::redirect('/admin/update_horse_form.php?id=' . $conn->lastInsertId());
     }else{
         $errors[] = $horse->errors;
     }
@@ -23,6 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+<?php require '../includes/admin_nav.php' ?>
     <form class="w-75 mx-auto mt-5 border border-2 shadow-lg rounded p-3" method="post">
         <div class='row'>
             <div class="mb-3 col-lg-4">
@@ -61,11 +62,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class='row mt-3'>
 
                 <div class='col-lg-4 me-auto'>
-                    <button type='submit' class='btn btn-primary w-100'>Submit</button>
+                    <button type='submit' class='btn btn-primary w-100 loading'>Submit</button>
                 </div>
 
                 <div class='col-lg-4 ms-auto'>
-                    <a class='btn btn-danger w-100' href="../horses.php">Cancel</a>
+                    <a class='btn btn-danger w-100 loading' href="../horses.php">Cancel</a>
                 </div>
             </div>
         </div>

@@ -15,15 +15,7 @@ require '../includes/horse_info.php';
 <head>
     <title><?= $horse->name ?></title>
 </head>
-<section class='container-fluid p-2 row text-center justify-content-between  '>
-    <?php if (!Auth::unauthorized()) : ?>
-        <ul class="nav col-lg-6 mx-auto d-flex justify-content-center">
-            <li>
-                <a class='btn btn-secondary' href="/admin/update_horse_form.php?id=<?= $horse->id ?>">Update</a>
-            </li>
-
-        </ul>
-    <?php endif ?>
+<section class='container-fluid p-2 row text-center justify-content-between  '>    
 
     <section class='col-lg-12 row pb-3 justify-content-center d-flex transparent-card-background '>
         <div class="col-12 mb-3 justify-content-center text-center">
