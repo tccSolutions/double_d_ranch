@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <table id="medical_table" class=' w-75 table table-dark mx-auto'>
 
         <thead>
-            <td class='text-center' colspan="11">
+            <td class='text-center' colspan="12">
                 <h5>MEDICAL HISTORY</h5>
             </td>
         </thead>
@@ -54,7 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <td class='medical_hidden'>Black Tape</td>
             <td class='medical_hidden'>Wormed</td>
             <td class='medical_hidden'>Coggins</td>
+            <td class='medical_hidden'>Vaccinated</td>
             <td></td>
+            
         </thead>
         <tbody>
             <?php foreach ($medical_records as $record) : ?>
@@ -69,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <td class='medical_hidden'><?= $record['black_tape'] ?></td>
                     <td class='medical_hidden' style='color:white;'><?= ($record['wormed'] == 1) ? "&check;" : "" ?></td>
                     <td class='medical_hidden'><?= ($record['coggins'] == 1) ? "&check;" : "" ?></td>
+                    <td class='medical_hidden'><?= ($record['vaccinated'] == 1) ? "&check;" : "" ?></td>
                     <td><a class='btn btn-secondary' href="edit_medical_record.php?id=<?= $record['id'] ?>">EDIT</a></td>
                 </tr>
             <?php endforeach ?>
@@ -136,6 +139,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="wormed" name='wormed'>
                     <label class="form-check-label" for="wormed">Wormed</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="vaccinated" name='vaccinated'>
+                    <label class="form-check-label" for="vaccinaed">Vaccinated</label>
                 </div>
             </div>
 

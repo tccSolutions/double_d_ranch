@@ -30,9 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Update <?= $horse->name ?></title>
 </head>
 
-<body>
+<div class="row">
 <?php require '../includes/admin_nav.php' ?>
-        <ul class="nav w-75 mx-auto mt-3 form_container">
+        
+    <form class="w-75 col-lg-7 mx-auto mt-2 border border-2 shadow-lg rounded p-3 form_container" method="post">
+    <ul class="nav w-75 mx-auto mt-3 form_container">
             <li class="nav-item ">
             <a id="" class="nav-link btn " href="images.php?id=<?=$_GET['id']?>">Images</a>
             </li>
@@ -41,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </li>
 
         </ul>
-    <form class="w-75 mx-auto mt-2 border border-2 shadow-lg rounded p-3 form_container" method="post">
         <h1><?= $horse->name ?></h1>
        
         <!-- General Information -->
@@ -102,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
     </form>
+</div>
 
 
 

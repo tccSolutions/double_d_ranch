@@ -72,4 +72,4 @@ function display_ranch_name($tag)
 </nav>
 
 <body class=''>
-  <div class='container-fluid form_container'>
+  <div class='container-fluid'>

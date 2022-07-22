@@ -98,7 +98,7 @@ class Medical
     public static function updateRecord($conn, $record_id, $POST)
     {
         $sql = "UPDATE medical_checkups 
-                SET date=:date, horse_id=:horse_id, type=:type, vet=:vet, height=:height , wormed=:wormed ,coggins=:coggins,
+                SET date=:date, horse_id=:horse_id, type=:type, vet=:vet, height=:height , wormed=:wormed ,coggins=:coggins, vaccinated=:vaccinated,
                 length=:length, girth=:girth, red_tape=:red_tape, black_tape=:black_tape, notes=:notes
                 WHERE id=:id";
 
@@ -118,12 +118,17 @@ class Medical
         $statement->bindValue(':notes', $POST['notes'], PDO::PARAM_STR);
         $statement->bindValue(':coggins', 0, PDO::PARAM_BOOL);
         $statement->bindValue(':wormed', 0, PDO::PARAM_BOOL);
+        $statement->bindValue(':vaccinated', 0, PDO::PARAM_BOOL);
 
         if (isset($POST['wormed'])) {
             $statement->bindValue(':wormed', $POST['wormed'], PDO::PARAM_BOOL);
         }
         if (isset($POST['coggins'])) {
             $statement->bindValue(':coggins', $POST['coggins'], PDO::PARAM_BOOL);
+        }
+        if (isset($POST['vaccinated'])) {
+            var_dump($POST['vaccinated']);
+            $statement->bindValue(':vaccinated', $POST['vaccinated'], PDO::PARAM_BOOL);
         }
         return $statement->execute();
     }
